@@ -9,3 +9,10 @@ out output.
 *   outputs: contains all our outputs final file (CSV)
 *   resources: contains all the downloaded sample data
     used as input for the program.
+
+#### STEPS
+*   Generate input.trace file
+*   Generate input.locations file
+*   Generate the directory structure based on the amount on users
+*   Run Sg-LPM code with the generated directory file
+*   Collect the result in a final CSV under *outputs*
