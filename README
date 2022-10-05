@@ -1,0 +1,31 @@
+This is an archive containing the code of the synthetic location trajectories generation tool described in the following publication.
+
+	Vincent Bindschaedler and Reza Shokri.
+	"Synthesizing Plausible Privacy-Preserving Location Traces."
+	In IEEE Symposium on Security and Privacy (S&P), Oakland, May 2016.
+
+See the aforementioned publication for details of the algorithms used.
+
+This code is based on a modified version of LPM² (http://icapeople.epfl.ch/rshokri/lpm/).
+
+Contact: bindsch2 (at) illinois (dot) edu
+
+There are three directories.
+1. 'lpm' 	-- contains the code of the modified version of LPM² including compilation script 'comp.sh'.
+2. 'sg-LPM' 	-- contains the synthetic generation code which uses LPM². It includes a compilation script 'comp.sh' and uses CLUTO (http://glaros.dtc.umn.edu/gkhome/cluto/cluto/overview) from the executable in the 'cluto' sub-directory. (To use newer versions of CLUTO, edit the provided script or replace 'scluster'.)
+3. 'samples'	-- contains sample input files (toy examples).
+
+The code can be run by providing appropriate parameters to the executable 'sg-LPM/build/sgLPM' after it is compiled.
+Parameters and options can be seen in the main function of 'sg-LPM/main.cpp'. (See also the example file in the 'samples' directory.)
+
+Input files (e.g., location trajectories file) must be in LPM² format. See the LPM² documentation for details.
+In addition to location trajectories files and other (optional) LPM² files, the code requires a locations x-y coordinates files. The code assumes that locations are labelled 1, 2, ... r, and that the ith line of the location file contains a pair 'x, y' separated by a comma, where x (resp. y) is the x (resp. y) coordinate of the ith location.
+
+When run, the code will first create required files (e.g., location semantic graph) using the provided inputs and parameters.
+It will then start generating synthetic location trajectories until stopped (e.g., by CTRL-C) or the process is killed.
+
+To generate a large quantity of synthetic location trajectories, run the code once to create the required files (based on the provided inputs). 
+Subsequently, you may start an arbitrary number of 'sg-LPM' instances, each generating its own set of synthetic location trajectories.
+
+Note that passing the parameter 'initonly' (see 'main.cpp') instructs the tool to exit after creating the necessary files (i.e., before the synthetics generation starts).
+
